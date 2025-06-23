@@ -47,10 +47,31 @@ $ mongo
 ***insert Data***
 ```bash
 $ mongo
-# 
->
-#
->
+#  save Date in Collection(table) multi json  Document(record) feild(column)
+> use <name>
+# Create Collection
+> db.createCollection("name")
+# show Collection
+> show collections 
+#  insert in Collection
+> db.<namecollection>.insert({"feild":"value", .......})
+# remove all Documents
+> db.<name>.remove({})  
+
+# insert multi Document (tools) 
+$ mognoimport --db nameDatabse --collection namecollection --file file.json
+# show Document
+$ monog
+> use nameDatabase
+> db.nameCollection.find().pretty()
+# update Document
+> db.nameCollectio.update({"feildUpdate":"value"},{$set:{"feildUpdate":"newValue"}})
+# use save for update (!note insert)
+> db.nameCollection.save({"_id":Objectid("kfhf.."),"feildName": "newValue"})
+# remove one Document
+> db.nameCollection.remove({"feildname":"value"})
+# remove collection
+> db.nameCollection.drop()
 ```
 ***display sort filter***
 ```bash
@@ -111,4 +132,82 @@ copy Data and  save multi server
 $ mongodump --db nameDatabase
 #restore
 $ mongorestore -db newdabse path
+```
+
+# use in  python
+## install 
+ ```bash
+ $ pip install pymongo
+ ```
+ ***use***
+ ```python
+ # connection
+    import pymongo as  mongo
+    # localhost , 27017
+    client = mongo.MongoClient('localhost',27017)
+    #client = mongo.MongoClient()
+    #client = mongo.MongoClient('monogodb://localhost:27017')
+    db = client["nameDatabse"]
+    # list Database
+    print(client.list_database_names())
+ ```
+Creat Databse
+```python
+    import pymongo as  mongo
+    # localhost , 27017
+    client = mongo.MongoClient('localhost',27017)
+    db = client["newDatabase"] # create Database
+    col = client["newCollection"] # create collection
+    print (client.list_database_name())
+``` 
+insert Dcoument in Database
+```python
+
+    import pymongo as  mongo
+    import json
+    # localhost , 27017
+    client = mongo.MongoClient('localhost',27017)
+    db = client["Database"] # 
+    col = client["Collection"] # 
+    # for insert create dictionry
+    dic = {"firstName": "jone","lastName":"jori"}
+    col.insert_one(dic)
+     # create multi Document
+    lsitdic =[ {"firstName": "jone","lastName":"jori"}, {"firstName": "jone","lastName":"jori"} {"firstName": "jone","lastName":"jori"}]
+    col.insert_many(listdic)
+
+    # read Document in file
+    whit open("path")as  file:
+        data = [json_load(line) for line in file]
+    col.insert_many(data)
+
+    ## show Document
+    result = col.find_one() # one  Document
+    print (result)
+    for Doc in col.find(): # all Document
+        print(Doc)
+```
+Mange DataBase 
+```python
+
+    import pymongo as  mongo
+    import json
+    # localhost , 27017
+    client = mongo.MongoClient('localhost',27017)
+    db = client["Database"] # 
+    col = client["Collection"] # 
+    
+    dic = col.find().sort("fieldname") # sort
+    
+    col.delete_one({"feildnae":"value"}) # remove
+    col.delete_many({}}) # remove all
+
+    # remove collection
+    col.drop()
+
+    # update
+     col .update_one({"feildname":"value"},{"$set":{"feildname":"newvalue"}})
+     col .update_many({},{"$set":{"feildname":"newvalue"}})
+
+     result = col.find().limit(2)
 ```
