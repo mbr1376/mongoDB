@@ -1,0 +1,70 @@
+# Byte-code files
+*.pyc
+*.pyd
+*.pyo
+__pycache__/
+
+# Distribution / build files
+.Python
+build/
+develop-eggs/
+dist/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environment
+.venv/
+venv/
+env/
+# You might place your virtual environment outside the project directory
+# if you prefer a global location, so these might not be needed.
+
+# IDE-specific files
+.idea/  # PyCharm
+.vscode/ # VS Code
+*.iml   # IntelliJ IDEA / PyCharm
+.project
+.settings/
+.directory
+.cproject
+
+# OS-specific files
+.DS_Store # macOS
+.Trashes # macOS
+Thumbs.db # Windows
+ehthumbs.db # Windows
+Desktop.ini # Windows
+
+# User-specific files
+.python_history
+.ropeproject/
+
+# Jupyter Notebook files
+.ipynb_checkpoints
+
+# Test files
+.pytest_cache/
+.coverage
+.tox/
+
+# Compiled files for Cython/Numba
+*.so
+*.dylib
+*.dll
+
+# Environment variables
+.env
+.flaskenv
+
+# Log files
+*.log
