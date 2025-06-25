@@ -171,7 +171,7 @@ Creat Databse
     # localhost , 27017
     client = mongo.MongoClient('localhost',27017)
     db = client["newDatabase"] # create Database
-    col = client["newCollection"] # create collection
+    col = db["newCollection"] # create collection
     print (client.list_database_name())
 ``` 
 insert Dcoument in Database
@@ -182,7 +182,7 @@ insert Dcoument in Database
     # localhost , 27017
     client = mongo.MongoClient('localhost',27017)
     db = client["Database"] # 
-    col = client["Collection"] # 
+    col = db["Collection"] # 
     # for insert create dictionry
     dic = {"firstName": "jone","lastName":"jori"}
     col.insert_one(dic)
@@ -209,7 +209,7 @@ Mange DataBase
     # localhost , 27017
     client = mongo.MongoClient('localhost',27017)
     db = client["Database"] # 
-    col = client["Collection"] # 
+    col = db["Collection"] # 
     
     dic = col.find().sort("fieldname") # sort
     
