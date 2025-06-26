@@ -6,7 +6,7 @@ class InterFaceUi(QObject):
     def __init__(self,parent=None):
         super().__init__(parent)
         self._id = 0
-
+        self._data = {}
     @Slot(str,str,str,str,)
     def get_data(self,fname,lname,phone,email):
         self._id +=1
@@ -16,3 +16,4 @@ class InterFaceUi(QObject):
                "PhoneNumber":phone,
                "email":email}  
         self.dataSignal.emit(dic)
+    

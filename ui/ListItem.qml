@@ -4,7 +4,6 @@ import QtQuick.Layouts
 
 Rectangle {
             id: boxperson
-            property ListModel _listmodel 
             radius: 5
             border.color: "#f76206"
             border.width: 2
@@ -16,12 +15,12 @@ Rectangle {
                 anchors.margins: 10
                 clip: true
                 spacing: 10
-                model:_listmodel
+                model:mymodel
                 delegate: Rectangle {
                     height: 100
                     color: "#f76206"
                     radius: 5
-
+                  property int _id : id
                     anchors.left: parent.left
                     anchors.right: parent.right
                     anchors.rightMargin: 5
@@ -46,7 +45,7 @@ Rectangle {
                          Text{
                             Layout.row :0
                             Layout.column:1
-                            text:firstName
+                            text:FirstName
                             color:"#FFFFFF"
                          }
                          Image{
@@ -61,7 +60,7 @@ Rectangle {
                          Text{
                             Layout.row :0
                             Layout.column:3
-                            text:lastName
+                            text:LastName
                             color:"#FFFFFF"
                          }
                         Image{
@@ -76,7 +75,7 @@ Rectangle {
                         Text{
                             Layout.row :1
                             Layout.column:1
-                            text:phone
+                            text:PhoneNumber
                             color:"#FFFFFF"
                          }
                         Image{

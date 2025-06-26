@@ -6,16 +6,7 @@ Item {
     anchors.fill:parent
     //width: 640
     //height: 480
-    ListModel{
-        id:listmodel
-        ListElement{
-            firstName:"mohamd"
-            lastName:"roodsarabi"
-            phone:"09398831591"
-            email:"mbr@gmail.com"
-
-        }
-    }
+   
 
     Rectangle {
         id: backgrand
@@ -50,7 +41,6 @@ Item {
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 5
             anchors.rightMargin: 5
-            _listmodel:listmodel
             anchors.topMargin: 5
         }
         
