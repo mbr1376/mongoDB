@@ -8,7 +8,7 @@ Rectangle {
             border.color: "#f76206"
             border.width: 2
             color: "#55ffffff"
-
+           
             ListView {
                 id: listView
                 anchors.fill: parent

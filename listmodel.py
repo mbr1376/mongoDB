@@ -13,24 +13,24 @@ class ListModel(QAbstractListModel):
 
         item = self._data[index.row()]
         if role == Qt.DisplayRole:
-            return item.get("id") 
-        elif role == Qt.UserRole + 1:
             return item.get("FirstName") 
+        elif role == Qt.UserRole + 1:
+            return item.get("LastName") 
         elif role == Qt.UserRole + 2:
-            return item.get("LastName")  
-        elif role == Qt.UserRole + 3:
             return item.get("PhoneNumber")  
-        elif role == Qt.UserRole + 4:
+        elif role == Qt.UserRole + 3:
             return item.get("email")  
+        elif role == Qt.UserRole + 4:
+            return item.get("id")  
         return None
 
     def roleNames(self):
         roles = {
-            Qt.DisplayRole: b"id",
-            Qt.UserRole + 1: b"FirstName",
-            Qt.UserRole + 2: b"LastName",
-            Qt.UserRole + 3: b"PhoneNumber",
-            Qt.UserRole + 4: b"email",
+            Qt.DisplayRole: b"FirstName",
+            Qt.UserRole + 1: b"LastName",
+            Qt.UserRole + 2: b"PhoneNumber",
+            Qt.UserRole + 3: b"email",
+            Qt.UserRole + 4: b"id",
         }
         return roles
     
@@ -39,6 +39,6 @@ class ListModel(QAbstractListModel):
         self.beginResetModel()
         self._data = new_data
         self.endResetModel()
-        
+
     def refreshFromMongo(self, mongo_data):
         self.setDataList(mongo_data) 

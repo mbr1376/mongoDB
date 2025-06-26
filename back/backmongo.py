@@ -19,7 +19,7 @@ class BackMongo:
     
     def search(self,name):
        dictionry =[]
-       for doc in self._collectoiton.find({"name":name}):
+       for doc in self._collectoiton.find({"FirstName":name}):
            dictionry.append(doc)
        return dictionry
 
@@ -33,4 +33,4 @@ class BackMongo:
         self._collectoiton.delete_many({})
     
     def remove(self,name):
-        self._collectoiton.delete_one({"name":name})
+        self._collectoiton.delete_one({"id":name})

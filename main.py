@@ -24,9 +24,21 @@ if __name__ == "__main__":
             mongodb.add_to_database(new_item)
             new_data = mongodb.display_data()
             listmodel.refreshFromMongo(new_data)
+        def on_search(item):
+            dic =mongodb.search(item)
+            for item in dic:
+                item.pop("_id", None)
+              
+            listmodel.refreshFromMongo([])
+            listmodel.refreshFromMongo(dic)
+        def clear_search():
+            new_data = mongodb.display_data()
+            listmodel.refreshFromMongo(new_data)
 
         interface.dataSignal.connect(on_data_added)
-
+        interface.searchSignal.connect(on_search)
+        interface.clearSearchSignal.connect(clear_search)
+        
         engine.rootContext().setContextProperty("_interface", interface)
         engine.rootContext().setContextProperty("mymodel", listmodel)
 
