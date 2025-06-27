@@ -3,6 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts 
 
 Rectangle {
+            signal itemClicked(id:int,name:string,family:string,phone:string,email:string)
             id: boxperson
             radius: 5
             border.color: "#f76206"
@@ -32,7 +33,14 @@ Rectangle {
                          columns:4
                         rowSpacing :2
                         columnSpacing:2
-                         anchors.fill :parent                         
+                        anchors.fill :parent
+                        MouseArea{
+                           anchors.fill: parent
+                           onClicked:{
+                              itemClicked(_id,_firstname.text,_lastname.text,_phone.text,_email.text)
+                              ///console.log(_id,_firstname.text,_lastname.text,_phone.text,_email.text)
+                           }
+                        }                         
                          Image{
                             Layout.maximumWidth:24
                             Layout.maximumHeight:24
@@ -43,6 +51,7 @@ Rectangle {
                             
                          }
                          Text{
+                           id:_firstname
                             Layout.row :0
                             Layout.column:1
                             text:FirstName
@@ -58,6 +67,7 @@ Rectangle {
                             
                          }
                          Text{
+                           id:_lastname
                             Layout.row :0
                             Layout.column:3
                             text:LastName
@@ -73,6 +83,7 @@ Rectangle {
                             
                         }
                         Text{
+                           id:_phone
                             Layout.row :1
                             Layout.column:1
                             text:PhoneNumber
@@ -88,6 +99,7 @@ Rectangle {
                             
                          }
                         Text{
+                           id:_email
                             Layout.row :1
                             Layout.column:3
                             text: email

@@ -2,7 +2,15 @@ import QtQuick
 import QtQuick.Controls.Basic 
 import QtQuick.Layouts 
  Rectangle{
-        
+        property int _id 
+        function set_date(id,firstname,lastname,phone,email){
+            _id = id
+            _name.text = firstname
+            _family.text = lastname
+            _phone.text = phone
+            _email.text = email
+            
+        }
         color:"#44252525"
         radius :5
         GridLayout{
@@ -76,13 +84,13 @@ import QtQuick.Layouts
              hoverEnabled : true
              display:AbstractButton.IconOnly	
        
-            icon.source: "./icon/add-database.png"
+            icon.source: "./icon/update.png"
             icon.width:24
             icon.height:24
             icon.color : "#5753c9"
              onClicked: {
                 
-                 _interface.get_data(_name.text,_family.text,_phone.text,_email.text)
+                 _interface.update(_id,_name.text,_family.text,_phone.text,_email.text)
              }
 
             background: Rectangle {

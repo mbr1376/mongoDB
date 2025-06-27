@@ -31,14 +31,32 @@ if __name__ == "__main__":
               
             listmodel.refreshFromMongo([])
             listmodel.refreshFromMongo(dic)
+        
         def clear_search():
             new_data = mongodb.display_data()
             listmodel.refreshFromMongo(new_data)
+        
+        def update_datachanged(id,dic):
+            mongodb.update_to_database(id,dic)
+            new_data = mongodb.display_data()
+            listmodel.refreshFromMongo(new_data)
+        def remove_data(id):
+            mongodb.remove(id)
+            new_data = mongodb.display_data()
+            listmodel.refreshFromMongo(new_data)
+        def remove_dataall():
+            mongodb.remove_all()
+            new_data = mongodb.display_data()
+            listmodel.refreshFromMongo(new_data)
+        
 
         interface.dataSignal.connect(on_data_added)
         interface.searchSignal.connect(on_search)
         interface.clearSearchSignal.connect(clear_search)
-        
+        interface.updateSignal.connect(update_datachanged)
+        interface.removeAllSignal.connect(remove_dataall)
+        interface.removeSignal.connect(remove_data)
+
         engine.rootContext().setContextProperty("_interface", interface)
         engine.rootContext().setContextProperty("mymodel", listmodel)
 

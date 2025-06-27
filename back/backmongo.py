@@ -16,6 +16,8 @@ class BackMongo:
     def delete_to_databasea(self,id):
         self._collectoiton.delete_one({"id":id})
     
+    def update_to_database(self,id,dic):
+        self._collectoiton.update_one({"id":id},{"$set":dic})
     
     def search(self,name):
        dictionry =[]
@@ -32,5 +34,5 @@ class BackMongo:
     def remove_all(self):
         self._collectoiton.delete_many({})
     
-    def remove(self,name):
-        self._collectoiton.delete_one({"id":name})
+    def remove(self,id):
+        self._collectoiton.delete_one({"id":id})

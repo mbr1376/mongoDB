@@ -31,7 +31,7 @@ Item {
             orientation: Gradient.Vertical
         }
         InputItem{
-
+            id:_input
         }
         
         ListItem{
@@ -42,6 +42,10 @@ Item {
             anchors.bottomMargin: 5
             anchors.rightMargin: 5
             anchors.topMargin: 5
+            onItemClicked:function(id,firstname,lastname,phone,email){
+                _input.itemClicked(id,firstname,lastname,phone,email)        
+                //console.log(id,firstname,lastname,phone,email)
+            }
         }
         
 
