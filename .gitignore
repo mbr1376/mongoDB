@@ -3,7 +3,7 @@
 *.pyd
 *.pyo
 __pycache__/
-
+._*
 # Distribution / build files
 .Python
 build/
