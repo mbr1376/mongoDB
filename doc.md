@@ -225,3 +225,62 @@ Mange DataBase
 
      result = col.find().limit(2)
 ```
+
+# use in Cpp
+## instal
+***linux***
+```bash
+$ sudo apt install libmongoc-1.0-0 libmongoc-dev libbson-dev
+# or manual install
+$ git clone https://github.com/mongodb/mongo-cxx-driver.git --branch releases/stable
+
+$ cd  mongo-cxx-driver/build 
+$ cmake ..                                  \
+    -DCMAKE_BUILD_TYPE=Release            \
+    -DCMAKE_INSTALL_PREFIX=/usr/local     \
+    -DBUILD_SHARED_LIBS=ON
+$ sudo make -j4 install
+```
+***mac***
+```bash
+$ brew install mongo-c-driver
+$ brew install mongo-cxx-driver
+```
+***Use***
+add library to  cmake
+```cmake
+find_package(mongocxx REQUIRED)
+```
+```cpp
+#include <mongocxx/client.hpp>
+#include <mongocxx/instance.hpp>
+#include <mongocxx/uri.hpp>
+#include <bsoncxx/json.hpp>
+// connect to  mongo
+    static mongocxx::instance instance{}; // Required once in your app
+
+    mongocxx::client client{mongocxx::uri{"mongodb://localhost:27017"}};
+    auto db = client["mydb"];
+    auto collection = db["mycollection"];
+    // List databases
+    auto dbs = client.list_databases();
+    for (const auto& db : dbs) {
+        qDebug() << "Database:" << QString::fromStdString(db["name"].get_utf8().value.to_string());
+    }
+```
+insert Dcoument in Database
+```cpp
+#include <mongocxx/client.hpp>
+#include <mongocxx/instance.hpp>
+#include <mongocxx/uri.hpp>
+#include <bsoncxx/json.hpp>
+// connect to  mongo
+    static mongocxx::instance instance{}; // Required once in your app
+
+    mongocxx::client client{mongocxx::uri{"mongodb://localhost:27017"}};
+    auto db = client["mydb"];
+    auto collection = db["mycollection"];
+    bsoncxx::builder::stream::document document{};
+    document << "name" << "MacUser" << "language" << "C++";
+    collection.insert_one(document.view());
+```
