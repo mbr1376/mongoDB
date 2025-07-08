@@ -280,7 +280,57 @@ insert Dcoument in Database
     mongocxx::client client{mongocxx::uri{"mongodb://localhost:27017"}};
     auto db = client["mydb"];
     auto collection = db["mycollection"];
+    // insert documen
     bsoncxx::builder::stream::document document{};
     document << "name" << "MacUser" << "language" << "C++";
     collection.insert_one(document.view());
+    // insert multi Document
+    std::vector<bsoncxx::document::value> docs;
+
+    docs.push_back(document{} << "name" << "Alice" << "age" << 25 << finalize);
+    docs.push_back(document{} << "name" << "Bob" << "age" << 30 << finalize);
+    docs.push_back(document{} << "name" << "Charlie" << "age" << 28 << finalize);
+    auto result = collection.insert_many(docs);
+     if (result) {
+            qDebug() << "Inserted documents:" << result->inserted_count();
+        } else {
+            qDebug() << "Insert failed.";
+    // show document
+        auto cursor = collection.find({});
+        for (auto&& doc : cursor) {
+            qDebug() << QString::fromStdString(bsoncxx::to_json(doc));
+        }
+
+```
+
+Manage mongoDB
+```cpp
+    #include <mongocxx/client.hpp>
+#include <mongocxx/instance.hpp>
+#include <mongocxx/uri.hpp>
+#include <bsoncxx/json.hpp>
+// connect to  mongo
+    static mongocxx::instance instance{}; // Required once in your app
+
+    mongocxx::client client{mongocxx::uri{"mongodb://localhost:27017"}};
+    auto db = client["mydb"];
+    auto collection = db["mycollection"];
+
+    //sort
+    auto cursor = collection.find({}, mongocxx::options::find{}.sort(make_document(kvp("age", 1))));
+    ///remove 
+    collection.delete_one(make_document(kvp("name", "Alice")));
+    // remove all
+    collection.delete_many({});
+
+    //update 
+    collection.update_one(
+    make_document(kvp("name", "Bob")),
+    make_document(kvp("$set", make_document(kvp("age", 40))))
+);
+// update all
+collection.update_many(
+    make_document(kvp("age", make_document(kvp("$lt", 30)))),
+    make_document(kvp("$set", make_document(kvp("status", "young"))))
+);
 ```
