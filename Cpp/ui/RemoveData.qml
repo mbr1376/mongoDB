@@ -33,7 +33,7 @@ Rectangle{
              anchors.verticalCenter: parent.verticalCenter
              hoverEnabled : true
             display:hovered ? AbstractButton.TextUnderIcon	: AbstractButton.IconOnly	
-            icon.source: "./icon/delete.png"
+            icon.source: "icon/delete.png"
             icon.width:hovered ? 16:24
             icon.height:hovered ? 16:24
             icon.color : "#5753c9"
@@ -61,7 +61,7 @@ Rectangle{
              anchors.verticalCenter: parent.verticalCenter
             display:hovered ? AbstractButton.TextUnderIcon	: AbstractButton.IconOnly	
             hoverEnabled : true
-            icon.source: "./icon/delete-all.png"
+            icon.source: "icon/delete-all.png"
             icon.width:hovered ? 16:24
             icon.height:hovered ? 16:24
             icon.color : "#5753c9"

@@ -24,7 +24,9 @@ qt_add_qml_module(appCpp
         ui/RootItem.qml
         ui/SearchData.qml
         ui/UpdateData.qml
+        RESOURCES ui/icon/add-database.png ui/icon/contact.png ui/icon/delete-all.png ui/icon/delete.png ui/icon/email.png ui/icon/phone.png ui/icon/search-property.png ui/icon/update.png
 )
+
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
