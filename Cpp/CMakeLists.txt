@@ -25,6 +25,7 @@ qt_add_qml_module(appCpp
         ui/SearchData.qml
         ui/UpdateData.qml
         RESOURCES ui/icon/add-database.png ui/icon/contact.png ui/icon/delete-all.png ui/icon/delete.png ui/icon/email.png ui/icon/phone.png ui/icon/search-property.png ui/icon/update.png
+        SOURCES listmodel.h listmodel.cpp
 )
 
 
