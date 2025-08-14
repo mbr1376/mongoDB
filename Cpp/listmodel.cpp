@@ -18,7 +18,7 @@ QVariant ListModel::data(const QModelIndex &index, int role) const
     if (role == Qt::UserRole +3) return item.email;
     if (role == Qt::UserRole +4) return item.id;
 
-    return {}
+    return {};
 
 }
 
@@ -28,5 +28,5 @@ QHash<int, QByteArray> ListModel::roleNames() const
             {LastName,"LastName"},
             {PhoneNumber,"PhoneNumber"},
             {email,"email"},
-            {id,"id"}}
+            {id,"id"}};
 }

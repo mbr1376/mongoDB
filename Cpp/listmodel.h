@@ -25,6 +25,7 @@ public:
         id = Qt::UserRole +4
     };
     explicit ListModel(QObject *parent = nullptr);
+
 protected:
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
