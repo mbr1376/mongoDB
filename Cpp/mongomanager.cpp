@@ -27,7 +27,7 @@ bool MongoManager::connction()
     return false;
 }
 
-void MongoManager::addToDatabase(bsoncxx::v_noabi::builder::stream::document document)
+void MongoManager::addToDatabase(const bsoncxx::v_noabi::builder::stream::document &document)
 {
     m_collection.insert_one(document.view());
 }

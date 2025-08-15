@@ -11,9 +11,10 @@
 class MongoManager :public QObject
 {
    Q_OBJECT
+public:
     explicit MongoManager(QString host,QString port,QObject *parent= nullptr);
    bool connction();
-   void addToDatabase (bsoncxx::builder::stream::document document);
+   void addToDatabase (const bsoncxx::builder::stream::document &document);
    void deleteItem (int id);
    void updateItem (int id, QString name,QString lName,QString phone ,QString email);
    QList<QVariantMap> search(const QString &name);
