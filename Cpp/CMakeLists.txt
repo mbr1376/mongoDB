@@ -9,6 +9,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(bsoncxx REQUIRED)
 find_package(mongocxx REQUIRED)
 find_package(Qt6 REQUIRED COMPONENTS Quick Core)
+find_package(Qt6 REQUIRED COMPONENTS Core)
 
 qt_standard_project_setup(REQUIRES 6.7)
 
@@ -51,6 +52,7 @@ qt_add_qml_module(appCpp
     SOURCES
         listmodel.h listmodel.cpp
         mongomanager.h mongomanager.cpp
+        interfaceui.h interfaceui.cpp
 )
 
 target_link_libraries(appCpp
@@ -66,7 +68,8 @@ target_link_libraries(appCpp
 # -----------------------------
 add_executable(TestMongoManager
     Test/tst_testmongomanager.cpp
-    mongomanager.cpp       # کلاس مورد تست
+    mongomanager.cpp
+           # کلاس مورد تست
 )
 
 target_include_directories(TestMongoManager
@@ -85,6 +88,7 @@ target_link_libraries(TestMongoManager
         mongo::bsoncxx_shared
         Qt6::Core                # فقط Qt Core برای تست
 )
+target_link_libraries(TestMongoManager PRIVATE Qt6::Core)
 
 # فعال کردن CTest
 enable_testing()
