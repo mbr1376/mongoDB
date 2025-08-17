@@ -24,7 +24,7 @@ public:
         email = Qt::UserRole +3,
         id = Qt::UserRole +4
     };
-    explicit ListModel(QObject *parent = nullptr);
+    explicit ListModel(const QList <Item> &items, QObject *parent = nullptr);
 
 protected:
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;

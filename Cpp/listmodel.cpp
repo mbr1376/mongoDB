@@ -1,7 +1,7 @@
 #include "listmodel.h"
 
-ListModel::ListModel(QObject *parent)
-    : QAbstractListModel{parent}
+ListModel::ListModel(const QList<Item> &items, QObject *parent)
+    : QAbstractListModel{parent},m_items{items}
 {}
 
 int ListModel::rowCount(const QModelIndex &parent) const
@@ -30,3 +30,5 @@ QHash<int, QByteArray> ListModel::roleNames() const
             {email,"email"},
             {id,"id"}};
 }
+
+

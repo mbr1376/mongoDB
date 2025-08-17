@@ -3,12 +3,12 @@
 
 #include <QObject>
 #include <mongomanager.h>
-
+#include "listmodel.h"
 class InterfaceUI : public QObject
 {
     Q_OBJECT
 public:
-    explicit InterfaceUI(QObject *parent = nullptr);
+    explicit InterfaceUI(MongoManager* mongo,ListModel * listmodel,QObject *parent = nullptr);
 
 public slots:
 Q_INVOKABLE void get_data(const QString &fname,const QString &lname,
@@ -18,7 +18,8 @@ Q_INVOKABLE void get_data(const QString &fname,const QString &lname,
 signals:
 
 private:
-    MongoManager * monogo;
+    MongoManager* m_mongo;
+    ListModel * m_listmodel;
     int m_id {0};
 };
 

@@ -1,17 +1,24 @@
 #include "interfaceui.h"
 #include <QDebug>
 #include <mongomanager.h>
-InterfaceUI::InterfaceUI(QObject *parent)
-    : QObject{parent}
+#include <listmodel.h>
+InterfaceUI::InterfaceUI(MongoManager* mongo,ListModel * listmodel,QObject *parent)
+    : QObject{parent},m_mongo{mongo},
+    m_listmodel{listmodel}
 {
-    monogo  = new MongoManager ("mongodb://localhost", "27017");
-    if(monogo->connction())
-        qDebug()<< "connected";
-    else
-        qDebug()<< "no connected";
+
+
 }
 
 void InterfaceUI::get_data(const QString &fname, const QString &lname, const QString &phone, const QString &email)
 {
-    qDebug() << fname << lname << phone << email;
+    // bsoncxx::builder::stream::document doc{};
+    // doc << "id" << m_id
+    //     << "FirstName" << fname
+    //     << "LastName" << lname
+    //     << "PhoneNumber" << phone
+    // << "email" << email;
+
+    //monogo->addToDatabase(doc);
+    //qDebug() << fname << lname << phone << email;
 }
