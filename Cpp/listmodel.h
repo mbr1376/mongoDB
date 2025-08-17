@@ -25,7 +25,7 @@ public:
         id = Qt::UserRole +4
     };
     explicit ListModel(const QList <Item> &items, QObject *parent = nullptr);
-
+    void refreshFromMongo(const QList<Item> &item);
 protected:
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
@@ -37,6 +37,7 @@ signals:
 
 private:
     QList<Item> m_items;
+    void setDataList(const QList<Item> &items);
 };
 
 #endif // LISTMODEL_H

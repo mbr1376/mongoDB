@@ -4,6 +4,11 @@ ListModel::ListModel(const QList<Item> &items, QObject *parent)
     : QAbstractListModel{parent},m_items{items}
 {}
 
+void ListModel::refreshFromMongo(const QList<Item> &item)
+{
+    setDataList(item);
+}
+
 int ListModel::rowCount(const QModelIndex &parent) const
 {
     return m_items.count();
@@ -29,6 +34,13 @@ QHash<int, QByteArray> ListModel::roleNames() const
             {PhoneNumber,"PhoneNumber"},
             {email,"email"},
             {id,"id"}};
+}
+
+void ListModel::setDataList(const QList<Item> &items)
+{
+    beginResetModel();
+    m_items=items;
+    endResetModel();
 }
 
 
